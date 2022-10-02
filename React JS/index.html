@@ -10,12 +10,19 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
         const root = document.getElementById("root");
-        const Title = (
-            <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-                Hello I'm a title
-            </h3>
-        );
-        const Button = (
+        function Title() {
+            return (
+                <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+                    Hello I'm a title
+                </h3>
+            );
+        }
+        // const Title = () => (
+        //     <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+        //         Hello I'm a title
+        //     </h3>
+        // );
+        const Button = () => (
             <button
                 style={{
                     backgroundColor: "tomato",
@@ -27,8 +34,12 @@
         );
 
         const container = React.createElement("div", null, [Title, Button]);
-        // render는 react element를 가지고 HTML로 만들어 배치하는 것. 즉, 사용자에게 보여준다는 의미
-        // ReactDOM.render(span, span이 가야할 위치);
-        ReactDOM.render(container, root);
+        const Container = () => (
+            <div>
+                <Title />
+                <Button />
+            </div>
+        );
+        ReactDOM.render(<Container />, root);
     </script>
 </html>
