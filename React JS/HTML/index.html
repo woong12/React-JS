@@ -5,14 +5,30 @@
     </body>
 
     <!-- React을 사용하기 위한 링크 import -->
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
     <script type="text/babel">
-        function Btn({ text, onClick }) {
+        function Btn({ text, fontSize = 16 }) {
             return (
                 <button
-                    onClick={onClick}
+                    style={{
+                        backgroundColor: "tomato",
+                        color: "white",
+                        padding: "10px 20px",
+                        border: 0,
+                        borderRadius: 10,
+                        fontSize,
+                    }}
+                >
+                    {text}
+                </button>
+            );
+        }
+        /* function ConfirmBtn() {
+            return (
+                <button
                     style={{
                         backgroundColor: "tomato",
                         color: "white",
@@ -24,30 +40,20 @@
                     {text}
                 </button>
             );
-        }
-        function ConfirmBtn() {
-            return (
-                <button
-                    style={{
-                        backgroundColor: "tomato",
-                        color: "white",
-                        padding: "10px 20px",
-                        border: 0,
-                        borderRadius: 10,
-                    }}
-                >
-                    {text}
-                </button>
-            );
-        }
-        const MemorizedBtn = React.memo(Btn);
+        } */
+        // const MemorizedBtn = React.memo(Btn);
+
+        Btn.propTypes = {
+            text: PropTypes.string.isRequired,
+            fontSize: PropTypes.number,
+        };
         function App() {
-            const [value, setValue] = React.useState("Save Changes");
-            const changeValue = () => setValue("Revert Changes");
+            // const [value, setValue] = React.useState("Save Changes");
+            // const changeValue = () => setValue("Revert Changes");
             return (
                 <div>
-                    <MemorizedBtn text={value} onClick={changeValue} />
-                    <MemorizedBtn text="Continue" />
+                    <Btn text="Save Changes" fontSize={18} />
+                    <Btn text={"Continue"} />
                 </div>
             );
         }
